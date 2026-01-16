@@ -61,6 +61,12 @@ python=">=3.14,<3.15"
 [feature.dev.dependencies]
 jupyterlab = ">=4.4.3,<5"
 
+# Feature for tests
+[feature.test.dependencies]
+pytest = "*"
+pytest-cov = "*"
+
+
 [environments]
 prod = { features = ["py313"], solve-group = "prod" }
 # use default for the dev environment so tasks are resolved in this environment (avoids having to specify env)
@@ -72,3 +78,11 @@ prod314 = { features = ["py314"], solve-group = "prod314" }
 
 # python 3.12 environments for testing
 prod312 = { features = ["py312"], solve-group = "prod312" }
+
+# test environment
+test = { features = ["test", "py313"], solve-group = "test" }
+
+# Commandes for tests
+#[feature.test.commands]
+#test = "pytest --cov=src/pkoffee --cov-report=term-missing --cov-report=html:cov_html src/pkoffee/test/"
+#test-quick = "pytest src/pkoffee/test/ -x"  # Arrête au premier échec
