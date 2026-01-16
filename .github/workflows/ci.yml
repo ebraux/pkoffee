@@ -6,11 +6,11 @@ on:
 
 jobs:
   infos:
-    uses: ./.github/workflows/_reusable/infos.yml
+    uses: ./.github/workflows/_infos.yml
 
   checks:
     needs: infos
-    uses: ./.github/workflows/_reusable/checks.yml
+    uses: ./.github/workflows/_checks.yml
   tests:
     needs: checks
-    uses: ./.github/workflows/_reusable/tests.yml
+    uses: ./.github/workflows/_tests.yml
