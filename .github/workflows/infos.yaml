@@ -17,3 +17,19 @@ jobs:
           echo "Commit : ${{ github.sha }}"
           echo "Type de runner : ${{ runner.os }}"
           echo "hello-world"
+
+      # 1. Checkout du dépôt
+      - name: Checkout du projet
+        uses: actions/checkout@v6
+
+      # 2. Installation de Pixi via l'action officielle
+      - name: Installer Pixi
+        uses: prefix-dev/pixi-install-action@v0.9.3
+        with:
+            pixi-version: v0.63.0  # Spécifie la version de Pixi à installer
+
+
+      # 3. Lancement des tests dans l'environnement "test"
+      #    (avec déclenchement d'erreur explicite, comme tu le préfères)
+      - name: Lancer les tests avec Pixi
+        run: pixi run --environment test pytest -v
