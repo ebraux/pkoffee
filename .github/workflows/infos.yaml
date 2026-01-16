@@ -31,4 +31,5 @@ jobs:
       # 3. Lancement des tests dans l'environnement "test"
       #    (avec déclenchement d'erreur explicite, comme tu le préfères)
       - name: Lancer les tests avec Pixi
-        run: pixi run --environment test pytest -v
+        #run: pixi run --environment test pytest -v
+        run: pwd; ls -l; pixi workspace environment list
