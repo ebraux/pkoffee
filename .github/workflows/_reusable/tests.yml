@@ -1,0 +1,70 @@
+name: Tests (pixi)
+
+on:
+  workflow_call:
+
+jobs:
+  tests:
+    name: >
+      tests /
+      ${{ matrix.platform }} /
+      ${{ matrix.pixi_env }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # ---------- Linux x86_64 ----------
+          - os: ubuntu-latest
+            platform: linux-64
+            pixi_env: test
+
+          - os: ubuntu-latest
+            platform: linux-64
+            pixi_env: test312
+
+          - os: ubuntu-latest
+            platform: linux-64
+            pixi_env: test314
+
+          # ---------- Linux ARM64 ----------
+          # GitHub ne fournit pas encore de runner ARM natif gratuit,
+          # pixi peut néanmoins résoudre linux-aarch64 pour CI de cohérence
+          - os: ubuntu-latest
+            platform: linux-aarch64
+            pixi_env: test312
+
+          # ---------- macOS x86_64 ----------
+          - os: macos-13
+            platform: osx-64
+            pixi_env: test312
+
+          # ---------- macOS ARM64 ----------
+          - os: macos-latest
+            platform: osx-arm64
+            pixi_env: test314
+
+          # ---------- Windows ----------
+          - os: windows-latest
+            platform: win-64
+            pixi_env: test312
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+
+      - name: Install pixi
+        uses: prefix-dev/setup-pixi@v0.8.3
+        with:
+          pixi-version: latest
+          cache: true
+
+      - name: Show pixi info
+        run: |
+          pixi info
+          pixi platform
+
+      - name: Run tests
+        run: |
+          pixi run -e ${{ matrix.pixi_env }} pytest -v

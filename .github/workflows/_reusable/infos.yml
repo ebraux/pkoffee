@@ -1,0 +1,17 @@
+name: Info on context on Push
+
+on:
+  workflow_call:
+
+jobs:
+  info-on-context:
+    runs-on: ubuntu-latest  # Type de runner
+    steps:
+      - name: Récupérer les informations du dépôt
+        run: |
+          echo "Nom du dépôt : ${{ github.repository }}"
+          echo "Utilisateur : ${{ github.actor }}"
+          echo "Branche : ${{ github.ref_name }}"
+          echo "Commit : ${{ github.sha }}"
+          echo "Type de runner : ${{ runner.os }}"
+          echo "info-on-context"
