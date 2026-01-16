@@ -14,6 +14,10 @@ jobs:
         uses: prefix-dev/setup-pixi@v0.9.3
         with:
             pixi-version: v0.63.0
+            cache: true
+      
+      - name: Install deps
+        run: pixi install --locked
 
       - name: Lancer les tests avec Pixi
         run: pixi run --environment check ruff check
