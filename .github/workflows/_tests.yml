@@ -66,8 +66,7 @@ jobs:
       - name: Show pixi info
         run: |
           pixi info
-          pixi platform
-
+          pixi info | sed -n 's/^Platform: //p'
       - name: Run tests
         run: |
           pixi run -e ${{ matrix.pixi_env }} pytest -v
