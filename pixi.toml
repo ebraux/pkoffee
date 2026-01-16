@@ -66,21 +66,26 @@ jupyterlab = ">=4.4.3,<5"
 pytest = "*"
 pytest-cov = "*"
 
+# Feature for check
+[feature.check.dependencies]
+ruff = "*"
+
 
 [environments]
 prod = { features = ["py313"], solve-group = "prod" }
 # use default for the dev environment so tasks are resolved in this environment (avoids having to specify env)
 # no need to include doc: pixi will figure the environment to use from the task if it is unique
 default = { features = ["dev", "py313"], solve-group = "prod" }
-
+check = { features = ["check", "py313"], solve-group = "prod" }
+test = { features = ["test", "py313"], solve-group = "prod" }
 # python 3.14 environments for testing
 prod314 = { features = ["py314"], solve-group = "prod314" }
+test314 = { features = ["test", "py314"], solve-group = "prod314" }
 
 # python 3.12 environments for testing
 prod312 = { features = ["py312"], solve-group = "prod312" }
+test312 = { features = ["test", "py312"], solve-group = "prod312" }
 
-# test environment
-test = { features = ["test", "py313"], solve-group = "test" }
 
 # Commandes for tests
 #[feature.test.commands]
