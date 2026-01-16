@@ -1,0 +1,18 @@
+name: Hello World on Push
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  hello-world:
+    runs-on: ubuntu-latest  # Type de runner
+    steps:
+      - name: Récupérer les informations du dépôt
+        run: |
+          echo "Nom du dépôt : ${{ github.repository }}"
+          echo "Utilisateur : ${{ github.actor }}"
+          echo "Branche : ${{ github.ref_name }}"
+          echo "Commit : ${{ github.sha }}"
+          echo "Type de runner : ${{ runner.os }}"
+          echo "hello-world"
