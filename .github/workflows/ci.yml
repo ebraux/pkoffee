@@ -2,7 +2,6 @@ name: CI
 
 on:
   push:
-    branches: [ "*" ]
 
 
 jobs:
@@ -14,5 +13,4 @@ jobs:
     uses: ./.github/workflows/_reusable/checks.yml
   tests:
     needs: checks
-    #if: github.event_name == 'pull_request'
     uses: ./.github/workflows/_reusable/tests.yml
