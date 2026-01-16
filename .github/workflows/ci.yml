@@ -11,6 +11,11 @@ jobs:
   checks:
     needs: infos
     uses: ./.github/workflows/_checks.yml
-  tests:
+  
+  coverage-check-code:
     needs: checks
-    uses: ./.github/workflows/_tests.yml
+    uses: ./.github/workflows/_coverage.yml
+
+  #tests:
+  #  needs: checks
+  #  uses: ./.github/workflows/_tests.yml
