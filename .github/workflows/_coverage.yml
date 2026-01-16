@@ -7,6 +7,18 @@ jobs:
   coverage-check-code:
     runs-on: ubuntu-latest  # Type de runner
     steps:
+      - name: Checkout du projet
+        uses: actions/checkout@v6
+
+      - name: Install Pixi
+        uses: prefix-dev/setup-pixi@v0.9.3
+        with:
+            pixi-version: v0.63.0
+            cache: true
+      
+      - name: Install deps
+        run: pixi install --locked
+
       - name: Run tests with coverage
         run: |
           pixi run -e test pytest --cov=pkoffee --cov-report=xml --cov-report=html
